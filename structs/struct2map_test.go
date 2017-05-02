@@ -3,8 +3,8 @@ package structs
 import "testing"
 
 type Example struct {
-	A string `json:"smaA" hidden:"yes"`
-	B string `json:"bigB" hidden:"no"`
+	A string `json:"smaA" need:"yes"`
+	B string `json:"bigB" need:"no"`
 }
 
 func TestStructToMap(t *testing.T) {

@@ -12,7 +12,7 @@ func StructToMap(m interface{}) map[string][]string {
 	for i := 0; i < mVal.NumField(); i++ {
 		field := mVal.Field(i)
 		jsonTag := typ.Field(i).Tag.Get("json")
-		hidTag := typ.Field(i).Tag.Get("hidden")
+		hidTag := typ.Field(i).Tag.Get("need")
 
 		var v string
 		switch field.Interface().(type) {
