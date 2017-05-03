@@ -5,8 +5,8 @@ import (
 	"strconv"
 )
 
-func StructToMap(m interface{}) map[string][]string {
-	res := map[string][]string{}
+func StructToMap(m interface{}) map[string]string {
+	res := map[string]string{}
 	mVal := reflect.ValueOf(m).Elem()
 	typ := mVal.Type()
 	for i := 0; i < mVal.NumField(); i++ {
@@ -28,13 +28,18 @@ func StructToMap(m interface{}) map[string][]string {
 			v = string(field.Bytes())
 		case string:
 			v = field.String()
+		case bool:
+			if field.Bool() {
+				v = "true"
+			} else {
+				v = "false"
+			}
 		}
 
-		if hidTag == "yes" && v == "" {
+		if hidTag == "no" && v == "" {
 			continue
 		}
-		res[jsonTag] = []string{v}
+		res[jsonTag] = v
 	}
-
 	return res
 }
